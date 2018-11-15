@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # declare all of the common routes for songs controller
+  resources :songs
+  # make index action our root path
+  root 'songs#index'
 end
