@@ -11,7 +11,7 @@ class SongsController < ApplicationController
   def show
   end
 
-  # define new action for returning an simple form for creating the song
+  # define new action for returning a simple form for creating a new song
   def new
     @song = Song.new
   end
@@ -26,6 +26,25 @@ class SongsController < ApplicationController
       render 'new'
   end
 end
+
+  # define edit action for returning a simple form for editing a song
+  def edit
+  end
+
+  # define update action for updating a specific song
+  def update
+    if @song.update(song_params)
+      redirect_to song_path(@song)
+    else
+      render 'edit'
+    end
+  end
+
+  # define destroy action for deleting a specific song
+  def destory
+    @song.destroy
+    redirect_to root_path
+  end
 
   private
 

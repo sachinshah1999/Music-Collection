@@ -3,3 +3,7 @@
 <h2>Album: <%= @song.album %></h2>
 <h2>Genre: <%= @song.genre %></h2>
 <h2>Year: <%= @song.year %></h2>
+
+<%= link_to "Back", root_path %>
+<%= link_to "Edit", edit_song_path(@song) %>
+<%= link_to "Delete", song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
