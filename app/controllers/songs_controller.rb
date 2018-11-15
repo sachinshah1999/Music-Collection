@@ -11,11 +11,17 @@ class SongsController < ApplicationController
   # define create action for creating songs
   def create
     @song = Song.new(song_params)
+
+    if @song.save
+      redirect_to root_path
+    else
+      render 'new'
   end
+end
 
   private
 
-  # method allows us to chose which attributes should be whitelisted for mass updating.  
+  # method allows us to chose which attributes should be whitelisted for mass updating.
   def song_params
     params.require(:song).permit(:title, :artist, :album, :genre, :year)
   end
