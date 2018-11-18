@@ -5,10 +5,6 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
   #   assert true
   # end
 
-  setup do
-    @song = songs(:one)
-  end
-
   test "should get index" do
     get songs_url
     assert_response :success

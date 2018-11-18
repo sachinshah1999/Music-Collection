@@ -13,12 +13,12 @@ class SongsController < ApplicationController
 
   # define new action for returning a simple form for creating a new song
   def new
-    @song = Song.new
+    @song = current_user.songs.build
   end
 
   # define create action for creating songs
   def create
-    @song = Song.new(song_params)
+    @song = current_user.songs.build(song_params)
 
     if @song.save
       redirect_to root_path
