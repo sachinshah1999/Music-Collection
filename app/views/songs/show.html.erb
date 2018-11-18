@@ -6,6 +6,6 @@
 <h2>Genre: <%= @song.genre %></h2>
 <h2>Year: <%= @song.year %></h2>
 
-<%= link_to t('songs.back'), root_path %>
-<%= link_to t('songs.edit'), edit_song_path(@song) %>
-<%= link_to t('songs.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
+<%= link_to t('songs.show.back'), root_path %>
+<%= link_to t('songs.show.edit'), edit_song_path(@song) %>
+<%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
