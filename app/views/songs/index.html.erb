@@ -3,6 +3,3 @@
 <% @songs.each do |song| %>
   <h2><%= link_to song.title, song_path(song) %></h2>
 <% end %>
-
-<%# Link, to add a new song from index page %>
-<%= link_to t('songs.index.add_song'), new_song_path %>

@@ -31,14 +31,18 @@
 
 en:
   hello: "Hello world"
+  app_title: Music Collection
+
+  nav_bar:
+    sign_up: Sign Up
+    sign_out: Sign Out
+    log_in: Log In
+    add_song: Add Song
+
 
   songs:
-
     edit:
       edit_song: Edit Song
-
-    index:
-      add_song: Add Song
 
     new:
       new_song: New Song
