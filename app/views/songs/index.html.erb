@@ -1,5 +1,8 @@
+<%# Index page, where all songs are displayed %>
+
 <% @songs.each do |song| %>
   <h2><%= link_to song.title, song_path(song) %></h2>
 <% end %>
 
-<%= link_to "Add Song", new_song_path %>
+<%# Link, to add a new song from index page %>
+<%= link_to t('songs.add_song'), new_song_path %>

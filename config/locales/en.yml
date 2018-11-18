@@ -31,3 +31,11 @@
 
 en:
   hello: "Hello world"
+
+  songs:
+    edit_song: Edit Song
+    add_song: Add Song
+    new_song: New Song
+    back: Back
+    edit: Edit
+    delete: Delete
