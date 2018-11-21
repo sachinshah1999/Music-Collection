@@ -1,10 +1,10 @@
 <%# Partial form for creating/editing a song %>
 
 <%= simple_form_for @song do |f| %>
+  <%= select_tag(:genre_id, options_for_select(@genres), :prompt => "Select a genre") %>
   <%= f.input :title %>
   <%= f.input :artist %>
   <%= f.input :album %>
-  <%= f.input :genre %>
   <%= f.input :year %>
   <%= f.button :submit %>
 <% end %>

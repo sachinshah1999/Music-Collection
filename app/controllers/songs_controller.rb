@@ -35,11 +35,13 @@ class SongsController < ApplicationController
   # define new action for returning a simple form for creating a new song
   def new
     @song = current_user.songs.build
+    @genres = Genre.all.map { |c| [c.name, c.id]  }
   end
 
   # define create action for creating songs
   def create
     @song = current_user.songs.build(song_params)
+    @song.genre_id = params[:genre_id]
 
     if @song.save
       redirect_to root_path
@@ -71,7 +73,7 @@ end
 
   # method allows us to chose which attributes should be whitelisted for mass updating.
   def song_params
-    params.require(:song).permit(:title, :artist, :album, :genre, :year)
+    params.require(:song).permit(:title, :artist, :album, :year, :genre_id)
   end
 
   # method to find a specific song using id

@@ -4,12 +4,10 @@ one:
   title: MyString
   artist: MyString
   album: MyString
-  genre: MyString
   year: 1
 
 two:
   title: MyString
   artist: MyString
   album: MyString
-  genre: MyString
   year: 1
