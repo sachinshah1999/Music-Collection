@@ -1,5 +1,14 @@
 <%# Index page, where all songs are displayed %>
 
-<% @songs.each do |song| %>
-  <h2><%= link_to song.title, song_path(song) %></h2>
+<%# Tell the user what genre they filtered by %>
+<h1 class="current-genre"><%= params[:genre] %></h1>
+
+<%# If there are no songs of that genre, then inform the user %>
+<% if @songs.count == 0 %>
+  <h1>There are currently no songs of this genre.</h1>
+<%# else display the songs of that genre %>
+<% else %>
+  <% @songs.each do |song| %>
+    <h2><%= link_to song.title, song_path(song) %></h2>
+  <% end %>
 <% end %>

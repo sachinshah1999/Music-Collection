@@ -31,6 +31,19 @@
 
         <ul class="nav navbar-nav navbar-right">
 
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            Genres <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <%# Get all the genres %>
+              <% Genre.all.each do |genre| %>
+                <li class="<%= 'active' if params[:genre] == genre.name %>">
+                  <%= link_to genre.name, songs_path(genre: genre.name), class: "link" %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+
           <%# You have to be logged in, to add a song.%>
           <% if user_signed_in? %>
               <li><%= link_to t('nav_bar.add_song'), new_song_path %></li>
@@ -49,7 +62,7 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
-    
+
     <!-- Add Footer Here -->
   </body>
 </html>

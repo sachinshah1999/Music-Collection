@@ -2,4 +2,11 @@
 
 <h1><%= t('songs.edit.edit_song') %></h1>
 
-<%= render 'form' %>
+<%= simple_form_for @song, :html => { :multipart => true } do |f| %>
+  <%= f.select :genre_id, @genres %>
+  <%= f.input :title %>
+  <%= f.input :artist %>
+  <%= f.input :album %>
+  <%= f.input :year %>
+  <%= f.button :submit %>
+<% end %>

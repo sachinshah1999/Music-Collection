@@ -4,7 +4,12 @@ class SongsController < ApplicationController
 
   # define index action to display all songs
   def index
-    @songs = Song.all.order("created_at DESC")
+    if params[:genre].blank?
+      @songs = Song.all.order("created_at DESC")
+    else
+      @genre_id = Genre.find_by(name: params[:genre]).id
+      @songs = Song.where(:genre_id => @genre_id).order("created_at DESC")
+    end
   end
 
   # define contact action to contact the sites owner
@@ -52,10 +57,12 @@ end
 
   # define edit action for returning a simple form for editing a song
   def edit
+    @genres = Genre.all.map { |c| [c.name, c.id]  }
   end
 
   # define update action for updating a specific song
   def update
+    @song.genre_id = params[:genre_id]
     if @song.update(song_params)
       redirect_to song_path(@song)
     else
@@ -70,7 +77,6 @@ end
   end
 
   private
-
   # method allows us to chose which attributes should be whitelisted for mass updating.
   def song_params
     params.require(:song).permit(:title, :artist, :album, :year, :genre_id)
