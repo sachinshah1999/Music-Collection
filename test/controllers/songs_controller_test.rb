@@ -4,7 +4,7 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
-  
+
   test "should get index" do
     get songs_url
     assert_response :success
@@ -32,6 +32,4 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
   assert_nil flash[:alert]
   assert_not_empty flash[:notice]
   end
-
-
 end

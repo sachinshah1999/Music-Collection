@@ -11,12 +11,14 @@ class SongsController < ApplicationController
   def contact
   end
 
+  # define request_contact method to POST our contact form
   def request_contact
     name = params[:name]
     email = params[:email]
     telephone = params[:telephone]
     message = params[:message]
 
+    # flash alert the user if email is blank
     if email.blank?
       flash[:alert] = I18n.t('songs.request_contact.no_email')
     else
