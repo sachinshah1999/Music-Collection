@@ -38,7 +38,7 @@ en:
     sign_out: Sign Out
     log_in: Log In
     add_song: Add Song
-
+    contact_us: Contact Us
 
   songs:
     edit:
@@ -51,3 +51,19 @@ en:
       back: Back
       edit: Edit
       delete: Delete
+
+    request_contact:
+      no_email: You must supply an email address.
+      email_sent: Thank you. We will be in touch shortly.
+
+
+    contact:
+      name: "Name:"
+      enter_name: Enter your name
+      email: "Email:"
+      enter_email: Enter your email address
+      telephone: "Telephone:"
+      enter_telephone: Enter your telephone number
+      message: "Message:"
+      enter_message: What do you want to say?
+      submit: Contact Us

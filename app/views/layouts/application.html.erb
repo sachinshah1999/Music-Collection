@@ -30,10 +30,13 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
+
           <%# You have to be logged in, to add a song.%>
           <% if user_signed_in? %>
               <li><%= link_to t('nav_bar.add_song'), new_song_path %></li>
           <% end %>
+
+          <li><%= link_to t('nav_bar.contact_us'), contact_path %></li>
 
         </ul>
 
@@ -46,5 +49,7 @@
     <p class="alert"><%= alert %></p>
 
     <%= yield %>
+    
+    <!-- Add Footer Here -->
   </body>
 </html>

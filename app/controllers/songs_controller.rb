@@ -7,6 +7,25 @@ class SongsController < ApplicationController
     @songs = Song.all.order("created_at DESC")
   end
 
+  # define contact action to contact the sites owner
+  def contact
+  end
+
+  def request_contact
+    name = params[:name]
+    email = params[:email]
+    telephone = params[:telephone]
+    message = params[:message]
+
+    if email.blank?
+      flash[:alert] = I18n.t('songs.request_contact.no_email')
+    else
+      # Send an email
+      flash[:notice] = I18n.t('songs.request_contact.email_sent')
+    end
+      redirect_to root_path
+  end
+
   # define show action to display a specific song
   def show
   end

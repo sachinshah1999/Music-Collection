@@ -7,5 +7,16 @@
 <h2>Year: <%= @song.year %></h2>
 
 <%= link_to t('songs.show.back'), root_path %>
-<%= link_to t('songs.show.edit'), edit_song_path(@song) %>
-<%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
+
+<%# Check if user is logged in, to prevent null values. %>
+<% if user_signed_in? %>
+
+  <%# Only the associated user to the song, can edit and delete the song. %>
+  <% if @song.user_id == current_user.id %>
+
+  <%= link_to t('songs.show.edit'), edit_song_path(@song) %>
+  <%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
+
+  <% end %>
+
+<% end %>

@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # User has many songs
   has_many :songs
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
