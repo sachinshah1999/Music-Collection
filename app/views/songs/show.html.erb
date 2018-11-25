@@ -1,22 +1,23 @@
 <%# Show view for looking at songs in more detail %>
 
-<h1>Title: <%= @song.title %></h1>
-<h2>Artist: <%= @song.artist %></h2>
-<h2>Album: <%= @song.album %></h2>
-<h2>Genre: <%=@song.genre.name %></h2>
-<h2>Year: <%= @song.year %></h2>
+	<h1>Title: <%= @song.title %></h1>
+	<h2>Artist: <%= @song.artist %></h2>
+	<h2>Album: <%= @song.album %></h2>
+	<h2>Genre: <%=@song.genre.name %></h2>
+	<h2>Year: <%= @song.year %></h2>
 
+<%# Link to songs index page %>
 <%= link_to t('songs.show.back'), root_path %>
 
-<%# Check if user is logged in, to prevent null values. %>
-<% if user_signed_in? %>
+<%# Check if user has signed in %>
+	<% if user_signed_in? %>
 
-  <%# Only the associated user to the song, can edit and delete the song. %>
-  <% if @song.user_id == current_user.id %>
+    <%# Only signed in user can edit & delete their own songs %>
+		<% if @song.user_id == current_user.id %>
 
-  <%= link_to t('songs.show.edit'), edit_song_path(@song) %>
-  <%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" }  %>
+			<%= link_to t('songs.show.edit'), edit_song_path(@song) %>
+			<%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" } %>
 
-  <% end %>
+		<% end %>
 
-<% end %>
+	<% end %>

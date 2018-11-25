@@ -1,6 +1,8 @@
 class SongsController < ApplicationController
   # filter method to find the song before the particular controller actions
   before_action :find_song, only: [:show, :edit, :update, :destroy]
+  # Users must be logged in to create and edit songs 
+  before_action :authenticate_user!, only: [:new, :edit]
 
   # define index action to display all songs
   def index
@@ -71,7 +73,7 @@ end
   end
 
   # define destroy action for deleting a specific song
-  def destory
+  def destroy
     @song.destroy
     redirect_to root_path
   end
