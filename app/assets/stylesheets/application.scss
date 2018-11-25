@@ -16,7 +16,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lora|Ubuntu:300,400,500);
 @import "bootstrap-sprockets";
 @import "bootstrap";
-
 /* Variables, mixins, etc.. */
 
 @mixin background-tile {
@@ -194,9 +193,9 @@ p.alert, p.notice {
 }
 
 
-/* current-category styles */
+/* current-genre styles */
 
-.current-category {
+.current-genre {
 	margin-bottom: 40px;
 }
 
@@ -241,13 +240,15 @@ p.alert, p.notice {
 		margin-top: 0;
 	}
 
-	#category_id {
+	#genre_id {
 		margin-bottom: 10px;
 	}
 
 	#song_song_img {
 		margin-bottom: 10px;
 	}
+
+
 
 }
 
@@ -262,7 +263,7 @@ p.alert, p.notice {
 		margin-top: 0;
 	}
 
-	#song_category_id {
+	#song_genre_id {
 		margin-bottom: 10px;
 	}
 
@@ -311,4 +312,18 @@ p.alert, p.notice {
 		margin-top: 0;
 	}
 
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+		padding-bottom: 5px;
+		padding-top: 5px;
+    background-color: #fff;
+    color: black;
+    text-align: center;
+		font-family: 'Ubuntu', sans-serif;
+		text-transform: uppercase;
 }
