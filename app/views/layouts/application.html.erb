@@ -62,10 +62,7 @@
     <p class="alert"><%= alert %></p>
     <div class="container">
       <%= yield %>
-      <%= render 'footer' %>
     </div>
-
-    <!-- Add Footer Here -->
-
+    <%= render :partial => "/songs/footer" %>
   </body>
 </html>

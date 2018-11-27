@@ -1,31 +1,35 @@
 <%# Show view for looking at songs in more detail %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <div class="col-md-6 col-md-offset-3">
+      <div class="new-song-form">
 
-<div class="col-md-6 col-md-offset-3">
+    		<h1>Title: <%= @song.title %></h1>
+    		<h2>Artist: <%= @song.artist %></h2>
+    		<h2>Album: <%= @song.album %></h2>
+    		<h2>Genre: <%=@song.genre.name %></h2>
+    		<h2>Year: <%= @song.year %></h2>
 
-  <div class="new-song-form">
+    		<%# Link to songs index page %>
+    		<%= link_to t('songs.show.back'), root_path %>
 
-		<h1>Title: <%= @song.title %></h1>
-		<h2>Artist: <%= @song.artist %></h2>
-		<h2>Album: <%= @song.album %></h2>
-		<h2>Genre: <%=@song.genre.name %></h2>
-		<h2>Year: <%= @song.year %></h2>
+    		<%# Check if user has signed in %>
+    			<% if user_signed_in? %>
+    		    <%# Only signed in user can edit & delete their own songs %>
+    				<% if @song.user_id == current_user.id %>
 
-		<%# Link to songs index page %>
-		<%= link_to t('songs.show.back'), root_path %>
+    					<%= link_to t('songs.show.edit'), edit_song_path(@song) %>
+    					<%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" } %>
+              
+    				<% end %>
+    			<% end %>
 
-		<%# Check if user has signed in %>
-			<% if user_signed_in? %>
+    		</div>
+    </div>
 
-		    <%# Only signed in user can edit & delete their own songs %>
-				<% if @song.user_id == current_user.id %>
-
-					<%= link_to t('songs.show.edit'), edit_song_path(@song) %>
-					<%= link_to t('songs.show.delete'), song_path(@song), method: :delete, data: { confirm: "Are you sure?" } %>
-
-				<% end %>
-
-			<% end %>
-
-		</div>
-
-</div>
+  </body>
+</html>

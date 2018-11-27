@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
   # filter method to find the song before the particular controller actions
   before_action :find_song, only: [:show, :edit, :update, :destroy]
-  # Users must be logged in to create and edit songs 
+  # Users must be logged in to create and edit songs
   before_action :authenticate_user!, only: [:new, :edit]
 
   # define index action to display all songs
@@ -79,6 +79,7 @@ end
   end
 
   private
+  # Strong Parameters:
   # method allows us to chose which attributes should be whitelisted for mass updating.
   def song_params
     params.require(:song).permit(:title, :artist, :album, :year, :genre_id)

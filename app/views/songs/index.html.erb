@@ -1,22 +1,28 @@
 <%# Index page, where all songs are displayed %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <%# Tell the user what genre they filtered by %>
+    <h1 class="current-genre"><%= params[:genre] %></h1>
+  </head>
+  <body>
+    
+    <%# If there are no songs of that genre, then inform the user %>
+    <% if @songs.count == 0 %>
+      <h1>There are currently no songs of this genre.</h1>
+    <%# else display the songs of that genre %>
+    <% else %>
 
-<%# Tell the user what genre they filtered by %>
-<h1 class="current-genre"><%= params[:genre] %></h1>
+    <div class="row">
 
-<%# If there are no songs of that genre, then inform the user %>
-<% if @songs.count == 0 %>
-  <h1>There are currently no songs of this genre.</h1>
-<%# else display the songs of that genre %>
-<% else %>
+      <% @songs.each do |song| %>
+      <div class="col-md-3">
+        <h2><%= link_to song.title, song_path(song) %></h2>
+      </div>
+      <% end %>
+    </div>
+    <% end %>
 
-<div class="row">
-
-  <% @songs.each do |song| %>
-
-  <div class="col-md-3">
-    <h2><%= link_to song.title, song_path(song) %></h2>
-  </div>
-  <% end %>
-</div>
-
-<% end %>
+  </body>
+</html>
