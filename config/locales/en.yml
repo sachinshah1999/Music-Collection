@@ -46,6 +46,8 @@ en:
 
     new:
       new_song: New Song
+      success: Song was successfully created.
+      fail: Song was not successfully created. Please try again.
 
     show:
       back: Back

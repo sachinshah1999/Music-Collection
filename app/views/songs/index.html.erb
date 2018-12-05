@@ -7,7 +7,7 @@
     <h1 class="current-genre"><%= params[:genre] %></h1>
   </head>
   <body>
-    
+
     <%# If there are no songs of that genre, then inform the user %>
     <% if @songs.count == 0 %>
       <h1>There are currently no songs of this genre.</h1>

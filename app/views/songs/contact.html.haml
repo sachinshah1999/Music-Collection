@@ -15,7 +15,10 @@
       = text_field_tag :name, '', title: t('songs.contact.enter_name'), size: 50
 
       = label_tag :email, t('songs.contact.email')
-      = email_field_tag :email, '', title: t('songs.contact.enter_email')
+      - if current_user
+        = email_field_tag :email, current_user.email, title: t('songs.contact.enter_email')
+      - else
+        = email_field_tag :email, '', title: t('songs.contact.enter_email')
 
       = label_tag :telephone, t('songs.contact.telephone')
       = telephone_field_tag :telephone, '', title: t('songs.contact.enter_telephone')

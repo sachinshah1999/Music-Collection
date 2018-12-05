@@ -3,7 +3,8 @@ class Song < ApplicationRecord
   belongs_to :user
   # A song belongs to a genre
   belongs_to :genre
-  # Must have a unique title for a song
+  # Title must be present
   validates :title, presence: true
+  # Must have a unique title for a song
   validates :title, uniqueness: true
 end
