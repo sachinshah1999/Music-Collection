@@ -31,11 +31,22 @@ class SongsController < ApplicationController
     # flash alert the user if email is blank
     if email.blank?
       flash[:alert] = I18n.t('songs.request_contact.no_email')
-      render 'contact'
+      #render 'contact'
+      redirect_to contact_path
+    else if name.blank?
+      flash[:alert] = I18n.t('songs.request_contact.no_name')
+      #render 'contact'
+      redirect_to contact_path
+    else if message.blank?
+      flash[:alert] = I18n.t('songs.request_contact.no_message')
+      #render 'contact'
+      redirect_to contact_path
     else
       ContactMailer.contact_email(email, name, telephone, message).deliver_now
       redirect_to root_path
       flash[:notice] = I18n.t('songs.request_contact.email_sent')
+    end
+    end
     end
     #redirect_to root_path
   end
@@ -94,7 +105,11 @@ end
 
   # method to find a specific song using id
   def find_song
-    @song = Song.find(params[:id])
+    if params[:id].nil?
+      redirect_to root_path
+    else
+      @song = Song.find(params[:id])
+    end
   end
 
   def set_genres

@@ -15,12 +15,49 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function() {
-	//jQuery code goes here
-  $('#name').on('input', function() {
-	var input=$(this);
-	var is_name=input.val();
-	if(is_name){input.removeClass("invalid").addClass("valid");}
-	else{input.removeClass("valid").addClass("invalid");}
+
+$(document).ready(function () {
+  $('#contact_form').validate({
+    rules: {
+      name: {
+        required: true,
+        lettersonly: true
+      },
+      email: {
+        required: true,
+        email: true
+      },
+      telephone: {
+        digits: true
+      },
+      message: {
+        required: true
+      }
+    },
+    messages: {
+      email : {
+        email: "Please enter a valid email"
+      },
+      telephone: {
+        digits: "Numbers only please"
+      },
+      name : {
+        lettersonly: "Letters only please"
+      }
+    },
+    submitHandler: function(form){
+      $(form).ajaxSubmit({
+        url: 'request_contact',
+        type: 'post',
+        data: $(form).serialize(),
+        success: function(response){
+          alert('success');
+        }
+      });
+    }
+  });
 });
-});
+
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Letters only please");

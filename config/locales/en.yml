@@ -56,6 +56,8 @@ en:
 
     request_contact:
       no_email: You must supply an email address.
+      no_name: You must supply a name.
+      no_message: You must supply a message.
       email_sent: Thank you. We will be in touch shortly.
 
 
