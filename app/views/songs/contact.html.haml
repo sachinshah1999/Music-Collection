@@ -7,7 +7,7 @@
       .new-song-form
         %h1
           = t('nav_bar.contact_us')
-        = form_tag request_contact_path, :id => 'contact_form', method: 'post' do
+        = form_tag request_contact_path, :remote => true, :id => 'contact_form', method: 'post' do
           = label_tag :name, t('songs.contact.name'), :id => 'name_label'
           = text_field_tag :name, '', title: t('songs.contact.enter_name'), size: 50
           = label_tag :email, t('songs.contact.email'), :id => 'email_label'

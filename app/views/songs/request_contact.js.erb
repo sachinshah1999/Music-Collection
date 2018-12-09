@@ -1,0 +1,50 @@
+$(document).ready(function () {
+    //Validate form on click
+    //$('#submit').on('click', function() {
+      $('#contact_form').validate({
+        rules: {
+          name: {
+            required: true,
+            lettersonly: true
+          },
+          email: {
+            required: true,
+            email: true
+          },
+          telephone: {
+            digits: true
+          },
+          message: {
+            required: true
+          }
+        },
+        messages: {
+          email : {
+            email: "Please enter a valid email"
+          },
+          telephone: {
+            digits: "Numbers only please"
+          },
+          name : {
+            lettersonly: "Letters only please"
+          }
+        },
+        submitHandler: function(form){
+          $.ajax({
+            type: 'post',
+            url: '/request_contact',
+            data: $(form).serialize(),
+            success: function (response) {
+              //window.location.replace("http://localhost:3000/");
+              //alert('Thank you. We will be in touch shortly.')
+            }
+          });
+          return false;
+        }
+      });
+    //});
+  });
+
+jQuery.validator.addMethod("lettersonly", function(value, element) {
+return this.optional(element) || /^[a-z]+$/i.test(value);
+}, "Letters only please");

@@ -28,27 +28,51 @@ class SongsController < ApplicationController
     telephone = params[:telephone]
     message = params[:message]
 
+    respond_to do |format|
     # flash alert the user if email is blank
-    if email.blank?
-      flash[:alert] = I18n.t('songs.request_contact.no_email')
-      #render 'contact'
-      redirect_to contact_path
-    else if name.blank?
-      flash[:alert] = I18n.t('songs.request_contact.no_name')
-      #render 'contact'
-      redirect_to contact_path
-    else if message.blank?
-      flash[:alert] = I18n.t('songs.request_contact.no_message')
-      #render 'contact'
-      redirect_to contact_path
-    else
-      ContactMailer.contact_email(email, name, telephone, message).deliver_now
-      redirect_to root_path
-      flash[:notice] = I18n.t('songs.request_contact.email_sent')
-    end
-    end
+      if email.blank?
+        format.js { flash[:alert] = I18n.t('songs.request_contact.no_email') }
+        #render 'contact'
+        #format.html { redirect_to contact_path }
+      else if name.blank?
+        format.js { flash[:alert] = I18n.t('songs.request_contact.no_name') }
+        #render 'contact'
+        #format.html { redirect_to contact_path }
+      else if message.blank?
+        format.js { flash[:alert] = I18n.t('songs.request_contact.no_message') }
+        #render 'contact'
+        #format.html { redirect_to contact_path }
+      else
+        ContactMailer.contact_email(email, name, telephone, message).deliver_now
+        format.html { redirect_to root_path }
+        format.js { flash[:notice] = I18n.t('songs.request_contact.email_sent') }
+      end
+      end
+      end
     end
     #redirect_to root_path
+  end
+
+  # define request_contact method to POST our contact form
+  def request_contact
+    respond_to do |format|
+      # form values
+      name = params[:name]
+      email = params[:email]
+      telephone = params[:telephone]
+      message = params[:message]
+
+    # flash alert the user if email is blank
+      if email.blank?
+        flash[:alert] = I18n.t('songs.request_contact.no_email')
+        format.html { redirect_to contact_path }
+      else
+        ContactMailer.contact_email(email, name, telephone, message).deliver_now
+        format.html { redirect_to root_path }
+        flash[:notice] = I18n.t('songs.request_contact.email_sent')
+        format.js
+      end
+    end
   end
 
   # define show action to display a specific song
@@ -93,6 +117,12 @@ end
   # define destroy action for deleting a specific song
   def destroy
     @song.destroy
+    redirect_to root_path
+  end
+
+  # Method to prevent error showing songs where id does not exist
+  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+  def record_not_found
     redirect_to root_path
   end
 

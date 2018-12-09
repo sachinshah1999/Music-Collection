@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   get 'contact', to: 'songs#contact'
   # POST route for contact form
   post 'request_contact', to: 'songs#request_contact'
+  # Redirect any routing errors to homepage
+  get "*path", to: redirect('/')
 end
