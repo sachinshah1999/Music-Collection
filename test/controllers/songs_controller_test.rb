@@ -40,7 +40,7 @@ class SongsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create song" do
   assert_difference('Song.count') do
-    post songs_path, params: { song: { user_id: @user, genre_id: @genre, title: @song.title } }
+    post songs_url, params: { song: { user_id: @user, genre_id: @genre, title: @song.title } }
   end
   assert_redirected_to root_path
   assert_equal 'Song was successfully created.', flash[:notice]
@@ -89,7 +89,7 @@ end
       message: "Hello" }
 
     assert_response :redirect
-    #assert_nil flash[:alert]
-    #assert_not_empty flash[:notice]
+    assert_nil flash[:alert]
+    assert_not_empty flash[:notice]
   end
 end
